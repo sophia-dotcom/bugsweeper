@@ -1,8 +1,8 @@
 // tiles are numbered and mines will be assigned to their correspending number
-const numRow = 4; //change here
-const numCol = 4; //change here
+const numRow = 5; //change here
+const numCol = 5; //change here
 const totalNumOfTiles = numRow * numCol;
-const totalNumOfMines = 4; //change here
+const totalNumOfMines = 5; //change here
 const container = document.querySelector(".container");
 
 /////////////////////////////////////////////
@@ -130,9 +130,8 @@ for (let i = 0; i < centerTileIndexArr.length; i++) {
   const somevalue = document.querySelector(`#t${centerTileIndexArr[i]}`);
   for (let j = 0; j < surrCenterTileArr.length; j++) {
     const surrCenterTile = document.querySelector(`#t${surrCenterTileArr[j]}`);
-    // isMine counts how many mines are surroung center tile
-    let isMine = 0;
-    if (surrCenterTile.value === 9) {
+
+    if (surrCenterTile.value > 8) {
       const somevalue = document.querySelector(`#t${centerTileIndexArr[i]}`);
       somevalue.value += 1;
     }
@@ -166,7 +165,7 @@ container.addEventListener(
     if (clickedTile.className === "tile mine") {
       clickedTile.style.backgroundImage = 'url("mine30px.jpg")';
     } else if (clickedTile.className === "tile") {
-      clickedTile.innerText = tileVal;
+      clickedTile.innerText = clickedTile.value;
     }
   })
 );
