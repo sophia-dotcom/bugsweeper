@@ -4,7 +4,6 @@ const numCol = 4; //change here
 const totalNumOfTiles = numRow * numCol;
 const totalNumOfMines = 4; //change here
 const container = document.querySelector(".container");
-const mineLocations = [];
 
 /////////////////////////////////////////////
 //// Generating Board ////
@@ -26,6 +25,8 @@ for (let i = 0; i < numRow; i++) {
 //// Generating Mines ////
 /////////////////////////////////////////////
 
+const mineLocations = [];
+
 // generating random numbers to be set as mine's location
 for (let i = 1; i < totalNumOfMines + 1; i++) {
   const eachMineLocation = Math.floor(Math.random() * totalNumOfTiles);
@@ -35,17 +36,18 @@ for (let i = 1; i < totalNumOfMines + 1; i++) {
 // removing the repeated elements
 for (let i = 0; i < mineLocations.length; i++) {
   for (let j = 0; j < mineLocations.length; j++) {
-    if (i === j) {
-      break;
+    if (i != j) {
+      continue;
     }
+    console.log("Still may have repeats " + mineLocations);
     if (mineLocations[i] === mineLocations[j]) {
-      mineLocations.splice(i, 1);
+      mineLocations.splice(j, 1);
       // generating new element to replace the removed element
       mineLocations.push(Math.floor(Math.random() * totalNumOfTiles));
     }
   }
 }
-console.log(mineLocations);
+console.log("mine locations by Id: " + mineLocations);
 
 // Setting each mine to correspond to a tile
 for (let i = 0; i < mineLocations.length; i++) {
@@ -56,7 +58,7 @@ for (let i = 0; i < mineLocations.length; i++) {
 // console.log(document.querySelectorAll("span"));
 
 /////////////////////////////////////////////
-//// Opening Tile Mechanism ////
+//// Assigning Values to Each Tile ////
 /////////////////////////////////////////////
 
 // value will be assigned as the number of mines in direct contact with each tile
@@ -64,9 +66,53 @@ for (let i = 0; i < mineLocations.length; i++) {
 const tileArr = document.querySelectorAll(".tile"); //array of HTML selected tiles
 const mineArr = document.querySelectorAll(".mine"); //array of HTML selected mines
 // tileVal is for inputting to value selector in HTML
-const tileVal = 0;
-const surr = (num) => {
-  return [
+
+// iterate thru tileArr and assign each tile of value 0 to start with
+for (let i = 0; i < tileArr.length; i++) {
+  tileArr[i].value = 0;
+}
+
+// iterate thru mineArr and assign each mine of value 9
+for (let i = 0; i < mineArr.length; i++) {
+  mineArr[i].value = 9;
+}
+
+// let's find the center tiles so we can consider them first
+// i.e. the tiles NOT touching the edge of the board
+
+// we can identify them using their row index and column index
+const centerTilesArr = [];
+const createCenterTiles = (row, col) => {
+  return {
+    row: row,
+    col: col,
+  };
+};
+
+for (let i = 1; i < numRow - 1; i++) {
+  const row = i;
+  for (let j = 1; j < numCol - 1; j++) {
+    const col = j;
+    centerTilesArr.push(createCenterTiles(row, col));
+  }
+}
+
+// after getting their row and column index,
+// we can use a formula to calculate their corresponding HTML id number
+const centerTileIndexArr = [];
+
+for (let i = 0; i < centerTilesArr.length; i++) {
+  const centerTileIndex =
+    centerTilesArr[i].row * numCol + centerTilesArr[i].col;
+  centerTileIndexArr.push(centerTileIndex);
+}
+console.log("center tiles' index: " + centerTileIndexArr);
+
+// this array generates the HTML id of the 8 surrounding tiles of each center tile
+// num refers to the HTML id of the center tile u want to check
+let surrCenterTileArr = [];
+const surrCenterTile = (num) => {
+  return (surrCenterTileArr = [
     num - numCol - 1,
     num - numCol,
     num - numCol + 1,
@@ -75,65 +121,41 @@ const surr = (num) => {
     num + numCol - 1,
     num + numCol,
     num + numCol + 1,
-  ];
+  ]);
 };
 
-// first, iterate thru mineArr and assign each mine of value 9
-for (let i = 0; i < mineArr.length; i++) {
-  mineArr[i].value = 9;
-}
-
-console.log(tileArr);
-console.log(mineArr);
-
-// this array is for identifying the surrounding 8 tiles to check for mines
-// const surr = [
-//   `${i - numCol - 1}`,
-//   `${i - numCol}`,
-//   `${i - numCol + 1}`,
-//   `${i - 1}`,
-//   `${i + 1}`,
-//   `${i + numCol - 1}`,
-//   `${i + numCol}`,
-//   `${i + numCol + 1}`,
-// ];
-
-// check if any of the surrounding 8 tiles have a value of 9
-for (let i = 0; i < tileArr.length; i++) {
-  // first, exclude the cases where this tile itself has a value of 9
-  if (tileArr[i].value != 9) {
-    // this array is for identifying the surrounding 8 tiles to check for mines
-    // iterate through the surrounding 8 tiles of each tile
-    // this arr is for storing true values later
-    const arr = [];
-    const currentSurr = surr(i);
-
-    for (let j = 0; j < totalNumOfTiles - 1; j++) {
-      // removing edge tiles first (less than 8 surrounding tiles)
-      // check for array's whose all values fall between -1 and 9
-      if (currentSurr[j] > -1 && currentSurr[j] < totalNumOfTiles) {
-        arr.push(currentSurr[j]);
-      }
+// check how many of the surrounding 8 tiles of each center tile have a value of 9
+for (let i = 0; i < centerTileIndexArr.length; i++) {
+  surrCenterTile(centerTileIndexArr[i]);
+  const somevalue = document.querySelector(`#t${centerTileIndexArr[i]}`);
+  for (let j = 0; j < surrCenterTileArr.length; j++) {
+    const surrCenterTile = document.querySelector(`#t${surrCenterTileArr[j]}`);
+    // isMine counts how many mines are surroung center tile
+    let isMine = 0;
+    if (surrCenterTile.value === 9) {
+      const somevalue = document.querySelector(`#t${centerTileIndexArr[i]}`);
+      somevalue.value += 1;
     }
-    if (arr.length === 8) {
-      console.log(i + " is not edge case");
-
-      const thisTile = document.querySelector(`#t${i}`);
-      console.log(thisTile);
-
-      // const eachSurrTile = document.querySelector()
-      // if (eachSurrTile.value === 9) {
-      //   thisTile.value += 1;
-      // }
-    }
+    // console.log(
+    //   "#t" + centerTileIndexArr[i] + " has " + somevalue.value + " mines"
+    // );
   }
+  console.log(document.querySelector(`#t${centerTileIndexArr[i]}`).value);
 }
-console.log(tileArr);
+
+// const eachSurrTile = document.querySelector()
+// if (eachSurrTile.value === 9) {
+//   thisTile.value += 1;
+// }
 
 // if (checkingTile.value === "9") {
 //   tileVal += 1;
 //   console.log(tileVal);
 // }
+
+/////////////////////////////////////////////
+//// Opening Tile Mechanism ////
+/////////////////////////////////////////////
 
 // making the tiles "open" on click
 container.addEventListener(
