@@ -1,6 +1,7 @@
 /* * {
   box-sizing: border-box;
 } */
+#t0,
 #t1,
 #t2,
 #t3,
@@ -8,8 +9,7 @@
 #t5,
 #t6,
 #t7,
-#t8,
-#t9 {
+#t8 {
   background-color: rgb(177, 177, 177);
   width: 30px;
   height: 30px;
@@ -18,8 +18,4 @@
   border-right: 1px solid rgb(0, 0, 0);
   border-bottom: 1px solid rgb(0, 0, 0);
   display: inline-block;
-}
-
-#t1 {
-  background-image: url("mine30px.png");
 }
