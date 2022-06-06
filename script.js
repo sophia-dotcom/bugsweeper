@@ -49,6 +49,18 @@ const tileArr = document.querySelectorAll(".tile"); //array of HTML selected til
 const mineArr = document.querySelectorAll(".mine"); //array of HTML selected mines
 // tileVal is for inputting to value selector in HTML
 const tileVal = 0;
+const surr = (num) => {
+  return [
+    num - numCol - 1,
+    num - numCol,
+    num - numCol + 1,
+    num - 1,
+    num + 1,
+    num + numCol - 1,
+    num + numCol,
+    num + numCol + 1,
+  ];
+};
 
 // first, iterate thru mineArr and assign each mine of value 9
 for (let i = 0; i < mineArr.length; i++) {
@@ -74,33 +86,30 @@ console.log(mineArr);
 for (let i = 0; i < tileArr.length; i++) {
   // first, exclude the cases where this tile itself has a value of 9
   if (tileArr[i].value != 9) {
-    continue;
-  }
-  // this array is for identifying the surrounding 8 tiles to check for mines
-  // iterate through the surrounding 8 tiles of each tile
-  console.log(tileArr[i]);
-  // for (let j = 0; j < 8; j++) {
-  //   const surr = [
-  //     j - numCol - 1,
-  //     j - numCol,
-  //     j - numCol + 1,
-  //     j - 1,
-  //     j + 1,
-  //     j + numCol - 1,
-  //     j + numCol,
-  //     j + numCol + 1,
-  //   ];
-  //   // removing edge tiles first (less than 8 surrounding tiles)
-  //   if (surr[j] < 0 || surr[j] > tileArr.length) {
-  //     console.log("hi");
-  //   }
+    // this array is for identifying the surrounding 8 tiles to check for mines
+    // iterate through the surrounding 8 tiles of each tile
+    // this arr is for storing true values later
+    const arr = [];
+    const currentSurr = surr(i);
 
-  //   // const eachSurrTile = document.querySelector(`#t${surr[4]}`);
-  //   // console.log(eachSurrTile);
-  //   // if (eachSurrTile.value === 9) {
-  //   //   thisTile.value += 1;
-  //   // }
-  // }
+    for (let j = 0; j < 8; j++) {
+      // removing edge tiles first (less than 8 surrounding tiles)
+      // check for array's whose all values fall between -1 and 9
+      if (currentSurr[j] > -1 && currentSurr[j] < 9) {
+        arr.push("true");
+      }
+    }
+    if (arr.length === 8) {
+      console.log(i + " is not edge case");
+
+      const eachSurrTile = document.querySelector(`#t${currentSurr[0]}`);
+      console.log(eachSurrTile);
+
+      if (eachSurrTile.value === 9) {
+        thisTile.value += 1;
+      }
+    }
+  }
 }
 console.log(tileArr);
 
