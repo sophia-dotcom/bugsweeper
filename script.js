@@ -102,12 +102,13 @@ for (let i = 0; i < tileArr.length; i++) {
     if (arr.length === 8) {
       console.log(i + " is not edge case");
 
-      const eachSurrTile = document.querySelector(`#t${currentSurr[0]}`);
-      console.log(eachSurrTile);
+      const thisTile = document.querySelector(`#t${i}`);
+      console.log(thisTile);
 
-      if (eachSurrTile.value === 9) {
-        thisTile.value += 1;
-      }
+      // const eachSurrTile = document.querySelector()
+      // if (eachSurrTile.value === 9) {
+      //   thisTile.value += 1;
+      // }
     }
   }
 }
