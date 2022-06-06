@@ -1,3 +1,7 @@
+/* * {
+  box-sizing: border-box;
+} */
+
 #r1c1,
 #r1c2,
 #r1c3,
@@ -8,24 +12,11 @@
 #r3c2,
 #r3c3 {
   background-color: rgb(177, 177, 177);
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-left: 1px solid rgb(231, 231, 231);
   border-top: 1px solid rgb(231, 231, 231);
   border-right: 1px solid rgb(0, 0, 0);
   border-bottom: 1px solid rgb(0, 0, 0);
+  display: inline-block;
 }
-
-/* .row-1 {
-  background-color: rgb(19, 30, 31);
-  width: 90px;
-  height: 30px;
-} */
-
-/* .container {
-  border-width: medium;
-  border-color: burlywood;
-  background-color: rgb(174, 221, 221);
-  width: 600px;
-  height: 600px;
-} */
