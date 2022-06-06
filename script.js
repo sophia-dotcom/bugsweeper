@@ -58,7 +58,7 @@ for (let i = 0; i < mineLocations.length; i++) {
 // console.log(document.querySelectorAll("span"));
 
 /////////////////////////////////////////////
-//// Assigning Values to Each Tile ////
+///// Assigning Values to CENTER Tiles //////
 /////////////////////////////////////////////
 
 // value will be assigned as the number of mines in direct contact with each tile
@@ -135,22 +135,21 @@ for (let i = 0; i < centerTileIndexArr.length; i++) {
       const somevalue = document.querySelector(`#t${centerTileIndexArr[i]}`);
       somevalue.value += 1;
     }
-    // console.log(
-    //   "#t" + centerTileIndexArr[i] + " has " + somevalue.value + " mines"
-    // );
   }
   console.log(document.querySelector(`#t${centerTileIndexArr[i]}`).value);
 }
 
-// const eachSurrTile = document.querySelector()
-// if (eachSurrTile.value === 9) {
-//   thisTile.value += 1;
-// }
+/////////////////////////////////////////////
+/////// Assigning Values to EDGE Tiles //////
+/////////////////////////////////////////////
 
-// if (checkingTile.value === "9") {
-//   tileVal += 1;
-//   console.log(tileVal);
-// }
+///// Top Edge ///////
+
+///// Left Edge - 2 ///////
+
+///// Bottom Edge ///////
+
+///// Right Edge - 2 ///////
 
 /////////////////////////////////////////////
 //// Opening Tile Mechanism ////
@@ -169,3 +168,7 @@ container.addEventListener(
     }
   })
 );
+
+/////////////////////////////////////////////////////
+//// Ripple Effect when tile value = 0 is opened ////
+/////////////////////////////////////////////////////
