@@ -1,13 +1,31 @@
+// tiles are numbered and mines will be assigned to their correspending number
+const numRow = 4; //change here
+const numCol = 4; //change here
+const totalNumOfTiles = numRow * numCol;
+const totalNumOfMines = 4; //change here
+const container = document.querySelector(".container");
+const mineLocations = [];
+
+/////////////////////////////////////////////
+//// Generating Board ////
+/////////////////////////////////////////////
+
+for (let i = 0; i < numRow; i++) {
+  const divRow = document.createElement("div");
+  container.append(divRow);
+  for (let j = 0; j < numCol; j++) {
+    const spanTile = document.createElement("span");
+    spanTile.className = "tile";
+    spanTile.id = `t${i * numCol + j}`;
+
+    divRow.append(spanTile);
+    console.log(document.querySelector(`#${spanTile.id}`));
+  }
+}
+
 /////////////////////////////////////////////
 //// Generating Mines ////
 /////////////////////////////////////////////
-
-// tiles are numbered and mines will be assigned to their correspending number
-const numRow = 3;
-const numCol = 3;
-const totalNumOfTiles = numRow * numCol;
-const totalNumOfMines = 3;
-const mineLocations = [];
 
 // generating random numbers to be set as mine's location
 for (let i = 1; i < totalNumOfMines + 1; i++) {
@@ -32,6 +50,7 @@ console.log(mineLocations);
 
 // Setting each mine to correspond to a tile
 for (let i = 0; i < mineLocations.length; i++) {
+  console.log(`#t${mineLocations[i]}`);
   const tile = document.querySelector(`#t${mineLocations[i]}`);
   tile.className = "tile mine";
   // tile.style.backgroundImage = 'url("mine30px.jpg")';
@@ -44,7 +63,6 @@ for (let i = 0; i < mineLocations.length; i++) {
 
 // value will be assigned as the number of mines in direct contact with each tile
 // if the tile itself is a mine, it will assigned a value of 9
-const container = document.querySelector(".container");
 const tileArr = document.querySelectorAll(".tile"); //array of HTML selected tiles
 const mineArr = document.querySelectorAll(".mine"); //array of HTML selected mines
 // tileVal is for inputting to value selector in HTML
