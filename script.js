@@ -19,7 +19,6 @@ for (let i = 0; i < numRow; i++) {
     spanTile.id = `t${i * numCol + j}`;
 
     divRow.append(spanTile);
-    console.log(document.querySelector(`#${spanTile.id}`));
   }
 }
 
@@ -50,7 +49,6 @@ console.log(mineLocations);
 
 // Setting each mine to correspond to a tile
 for (let i = 0; i < mineLocations.length; i++) {
-  console.log(`#t${mineLocations[i]}`);
   const tile = document.querySelector(`#t${mineLocations[i]}`);
   tile.className = "tile mine";
   // tile.style.backgroundImage = 'url("mine30px.jpg")';
@@ -110,11 +108,11 @@ for (let i = 0; i < tileArr.length; i++) {
     const arr = [];
     const currentSurr = surr(i);
 
-    for (let j = 0; j < 8; j++) {
+    for (let j = 0; j < totalNumOfTiles - 1; j++) {
       // removing edge tiles first (less than 8 surrounding tiles)
       // check for array's whose all values fall between -1 and 9
-      if (currentSurr[j] > -1 && currentSurr[j] < 9) {
-        arr.push("true");
+      if (currentSurr[j] > -1 && currentSurr[j] < totalNumOfTiles) {
+        arr.push(currentSurr[j]);
       }
     }
     if (arr.length === 8) {
