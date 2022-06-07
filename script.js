@@ -272,6 +272,7 @@ const generateLeftTiles = () => {
 generateLeftTiles();
 console.log(leftTileArr);
 
+// for each left tile, loop through its surrounding 5 tiles to check the number of surrounding mines
 for (const eachLeftTile of leftTileArr) {
   console.log(eachLeftTile);
   const surrEachLeftTile = surrLeftTile(eachLeftTile);
@@ -283,6 +284,57 @@ for (const eachLeftTile of leftTileArr) {
     const theHorribleTileVal = theHorribleTile.value;
 
     const theTileInQuestion = document.querySelector(`#t${eachLeftTile}`);
+    const theTileInQuestionVal = theTileInQuestion.value;
+    if (theHorribleTileVal > 8) {
+      somevalue += 1;
+    }
+    if (theTileInQuestionVal > 8) {
+      somevalue = 9;
+    }
+    theTileInQuestion.value = somevalue;
+  }
+  console.log(somevalue);
+}
+
+//// Right Side /////
+
+// this array generates the HTML id of the 5 surrounding tiles of each right-side tile
+// num refers to the HTML id of the right-side tile u want to check
+let surrRightTileArr = [];
+const surrRightTile = (num) => {
+  return (surrRightTileArr = [
+    num - numCol - 1,
+    num - numCol,
+    num - 1,
+    num + numCol - 1,
+    num + numCol,
+  ]);
+};
+
+// generate the list of HTML id of right tiles using numRow and numCol
+let rightTileArr = [];
+const generateRightTiles = () => {
+  for (let i = 3; i < numRow + 1; i++) {
+    rightTileArr.push(numCol * (i - 1) - 1);
+  }
+};
+generateRightTiles();
+console.log(rightTileArr);
+
+// for each right-side tile, loop through its surrounding 5 tiles to check the number of surrounding mines
+for (const eachRightTile of rightTileArr) {
+  console.log(eachRightTile);
+  const surrEachRightTile = surrRightTile(eachRightTile);
+  console.log(surrEachRightTile);
+
+  let somevalue = 0;
+  for (const eachSurrEachRightTile of surrEachRightTile) {
+    const theHorribleTile = document.querySelector(
+      `#t${eachSurrEachRightTile}`
+    );
+    const theHorribleTileVal = theHorribleTile.value;
+
+    const theTileInQuestion = document.querySelector(`#t${eachRightTile}`);
     const theTileInQuestionVal = theTileInQuestion.value;
     if (theHorribleTileVal > 8) {
       somevalue += 1;
