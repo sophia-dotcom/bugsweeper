@@ -1,8 +1,8 @@
-// tiles are numbered and mines will be assigned to their correspending number
-const numRow = 5; //change here
-const numCol = 5; //change here
+// tiles Col numbered and mines will be assigned to their correspending number
+const numRow = 8; //change here
+const numCol = 8; //change here
 const totalNumOfTiles = numRow * numCol;
-const totalNumOfMines = 5; //change here
+const totalNumOfMines = 8; //change here
 const container = document.querySelector(".container");
 
 /////////////////////////////////////////////
@@ -140,16 +140,112 @@ for (let i = 0; i < centerTileIndexArr.length; i++) {
 }
 
 /////////////////////////////////////////////
-/////// Assigning Values to EDGE Tiles //////
+///// Assigning Values to CORNER Tiles //////
 /////////////////////////////////////////////
 
-///// Top Edge ///////
+///// Top left Corner //////
 
-///// Left Edge - 2 ///////
+const topLeftTile = document.querySelector("#t0");
+const topLeftCornerValue = () => {
+  let tileValue = 0;
+  const tile1 = document.querySelector("#t1").value;
+  const tile2 = document.querySelector(`#t${numCol}`).value;
+  const tile3 = document.querySelector(`#t${numCol + 1}`).value;
+  if (tile1 > 8) {
+    tileValue += 1;
+  }
+  if (tile2 > 8) {
+    tileValue += 1;
+  }
+  if (tile3 > 8) {
+    tileValue += 1;
+  }
+  if (topLeftTile.className === "tile mine") {
+    return (tileValue = 9);
+  }
+  return tileValue;
+};
+topLeftTile.value = topLeftCornerValue();
+console.log(topLeftTile.value);
 
-///// Bottom Edge ///////
+///// Top Right Corner //////
 
-///// Right Edge - 2 ///////
+const topRightTile = document.querySelector(`#t${numCol - 1}`);
+const topRightCornerValue = () => {
+  let tileValue = 0;
+  const tile1 = document.querySelector(`#t${numCol - 2}`).value;
+  const tile2 = document.querySelector(`#t${2 * numCol - 2}`).value;
+  const tile3 = document.querySelector(`#t${2 * numCol - 1}`).value;
+  if (tile1 > 8) {
+    tileValue += 1;
+  }
+  if (tile2 > 8) {
+    tileValue += 1;
+  }
+  if (tile3 > 8) {
+    tileValue += 1;
+  }
+  if (topRightTile.className === "tile mine") {
+    return (tileValue = 9);
+  }
+  return tileValue;
+};
+topRightTile.value = topRightCornerValue();
+console.log(topRightTile.value);
+
+///// Bottom Left Corner //////
+
+const bottomLeftTile = document.querySelector(`#t${(numRow - 1) * numCol}`);
+const bottomLeftCornerValue = () => {
+  let tileValue = 0;
+  const tile1 = document.querySelector(`#t${(numRow - 2) * numCol}`).value;
+  const tile2 = document.querySelector(`#t${(numRow - 2) * numCol + 1}`).value;
+  const tile3 = document.querySelector(`#t${(numRow - 1) * numCol + 1}`).value;
+  if (tile1 > 8) {
+    tileValue += 1;
+  }
+  if (tile2 > 8) {
+    tileValue += 1;
+  }
+  if (tile3 > 8) {
+    tileValue += 1;
+  }
+  if (bottomLeftTile.className === "tile mine") {
+    return (tileValue = 9);
+  }
+  return tileValue;
+};
+bottomLeftTile.value = bottomLeftCornerValue();
+console.log(bottomLeftTile.value);
+
+///// Bottom Right Corner //////
+
+const bottomRightTile = document.querySelector(`#t${numRow * numCol - 1}`);
+const bottomRightCornerValue = () => {
+  let tileValue = 0;
+  const tile1 = document.querySelector(`#t${(numRow - 1) * numCol - 2}`).value;
+  const tile2 = document.querySelector(`#t${(numRow - 1) * numCol - 1}`).value;
+  const tile3 = document.querySelector(`#t${numRow * numCol - 2}`).value;
+  if (tile1 > 8) {
+    tileValue += 1;
+  }
+  if (tile2 > 8) {
+    tileValue += 1;
+  }
+  if (tile3 > 8) {
+    tileValue += 1;
+  }
+  if (bottomRightTile.className === "tile mine") {
+    return (tileValue = 9);
+  }
+  return tileValue;
+};
+bottomRightTile.value = bottomRightCornerValue();
+console.log(bottomRightTile.value);
+
+/////////////////////////////////////////////
+/////// Assigning Values to EDGE Tiles //////
+/////////////////////////////////////////////
 
 /////////////////////////////////////////////
 //// Opening Tile Mechanism ////
@@ -165,6 +261,8 @@ container.addEventListener(
       clickedTile.style.backgroundImage = 'url("mine30px.jpg")';
     } else if (clickedTile.className === "tile") {
       clickedTile.innerText = clickedTile.value;
+    } else if (clickedTile.value === 0) {
+      console.log("Have to do Ripple effect");
     }
   })
 );
