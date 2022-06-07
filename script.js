@@ -1,8 +1,10 @@
-// tiles Col numbered and mines will be assigned to their correspending number
-const numRow = 7; //change here
-const numCol = 7; //change here
-const totalNumOfTiles = numRow * numCol;
+// Board Set Up // => can add some buttons in UI to change values
+const numRow = 9; //change here
+const numCol = 6; //change here
 const totalNumOfMines = 5; //change here
+// ::::::: CODE STARTS :::::: //
+
+const totalNumOfTiles = numRow * numCol;
 const container = document.querySelector(".container");
 
 /////////////////////////////////////////////
@@ -271,7 +273,7 @@ const surrLeftTile = (num) => {
 let leftTileArr = [];
 const generateLeftTiles = () => {
   for (let i = 3; i < numRow + 1; i++) {
-    leftTileArr.push(numRow * (i - 2));
+    leftTileArr.push(numCol * (i - 2));
   }
 };
 generateLeftTiles();
