@@ -396,6 +396,57 @@ for (const eachTopTile of topTileArr) {
   console.log(somevalue);
 }
 
+//// Bottom Edge /////
+
+// this array generates the HTML id of the 5 surrounding tiles of each bottom-edge tile
+// num refers to the HTML id of the bottom-edge tile u want to check
+let surrbottomTileArr = [];
+const surrbottomTile = (num) => {
+  return (surrbottomTileArr = [
+    num - numCol - 1,
+    num - numCol,
+    num - numCol + 1,
+    num - 1,
+    num + 1,
+  ]);
+};
+
+// generate the list of HTML id of bottom-edge tiles using numRow and numCol
+let bottomTileArr = [];
+const generatebottomTiles = () => {
+  for (let i = 1; i < numCol - 1; i++) {
+    bottomTileArr.push(numCol * (numRow - 1) + i);
+  }
+};
+generatebottomTiles();
+console.log(bottomTileArr);
+
+// for each bottom-edge tile, loop through its surrounding 5 tiles to check the number of surrounding mines
+for (const eachbottomTile of bottomTileArr) {
+  console.log(eachbottomTile);
+  const surreachbottomTile = surrbottomTile(eachbottomTile);
+  console.log(surreachbottomTile);
+
+  let somevalue = 0;
+  for (const eachSurreachbottomTile of surreachbottomTile) {
+    const theHorribleTile = document.querySelector(
+      `#t${eachSurreachbottomTile}`
+    );
+    const theHorribleTileVal = theHorribleTile.value;
+
+    const theTileInQuestion = document.querySelector(`#t${eachbottomTile}`);
+    const theTileInQuestionVal = theTileInQuestion.value;
+    if (theHorribleTileVal > 8) {
+      somevalue += 1;
+    }
+    if (theTileInQuestionVal > 8) {
+      somevalue = 9;
+    }
+    theTileInQuestion.value = somevalue;
+  }
+  console.log(somevalue);
+}
+
 /////////////////////////////////////////////
 //// Opening Tile Mechanism ////
 /////////////////////////////////////////////
