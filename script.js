@@ -1,7 +1,8 @@
 // Board Set Up // => can add some buttons in UI to change values
-const numRow = 9; //change here
-const numCol = 6; //change here
-const totalNumOfMines = 5; //change here
+// must be at least 3x3
+const numRow = 10; //change here
+const numCol = 10; //change here
+const totalNumOfMines = 15; //change here
 // ::::::: CODE STARTS :::::: //
 
 const totalNumOfTiles = numRow * numCol;
@@ -479,52 +480,79 @@ container.addEventListener(
 
     // if tile clicked is has value 0, all nine surrounding tiles will "open"
     if (clickedTile.value === 0) {
-      console.log("Have to do Ripple effect");
-
       // First, let's recall the array of center tiles' Id we made earlier
       // We are going to check if e.target is one of the center tiles,
-      for (const centerTile of centerTileIndexArr) {
-        if (clickedTile.id === centerTile) {
-          continue;
+      // console.log(centerTileIndexArr);
+      for (const centerTileIndex of centerTileIndexArr) {
+        // console.log(clickedTile.id);
+        // console.log("t" + centerTileIndex);
+
+        const checkingArr = [];
+
+        if (clickedTile.id === "t" + centerTileIndex) {
+          checkingArr.push("string");
+        }
+        console.log(checkingArr);
+
+        // means if clickedTile.id matches any centerTileIndex
+        if (checkingArr.length > 0) {
+          console.log("Have to do Ripple effect");
+
+          // RIPPLE EFFECT (opening 8 tiles)
+
+          // Recall surrCenterTile() we called earlier that creates surrCenterTileArr
+          // which indicates the Ids of the surrounding 8 tiles of any center tile
+          console.log(centerTileIndex);
+          surrCenterTile(centerTileIndex);
+          console.log(surrCenterTileArr);
+
+          // opening the surrounding 8 tiles
+          for (const rippleTile of surrCenterTileArr) {
+            const rippleTileSelected = document.querySelector(
+              `#t${rippleTile}`
+            );
+            console.log(rippleTileSelected);
+            rippleTileSelected.innerText = rippleTileSelected.value;
+          }
         }
 
-        // Recall this function we created earlier to find out the id of the surrounding 8 tiles of each tile
-        // this function returns an array of the Ids of the 8 tiles surrounding each center tile
-        surrCenterTile(centerTile);
+        // // Recall this function we created earlier to find out the id of the surrounding 8 tiles of each tile
+        // // this function returns an array of the Ids of the 8 tiles surrounding each center tile
+        // surrCenterTile(centerTile);
 
-        // // remove cases where any of the surrounding tiles are a mine
-        // // because if so, the ripple effect should not open any of the surrounding mines
+        // // // remove cases where any of the surrounding tiles are a mine
+        // // // because if so, the ripple effect should not open any of the surrounding mines
 
-        // for (i = 0; i < surrCenterTileArr.length; i++) {
-        //   const jellyfish = document.querySelector(`#t${surrCenterTileArr[i]}`);
+        // // for (i = 0; i < surrCenterTileArr.length; i++) {
+        // //   const jellyfish = document.querySelector(`#t${surrCenterTileArr[i]}`);
+
+        // //   if (jellyfish.value > 8) {
+        // //     surrCenterTileArr.splice(surrCenterTileArr[i], 1);
+        // //   }
+        // // }
+
+        // // surrCenterTileArr is the array returned by the above function
+        // for (const surrCenterTile of surrCenterTileArr) {
+        //   // remove cases where any of the surrounding tiles are a mine
+        //   // because if so, the ripple effect should not open any of the surrounding mines
+        //   const jellyfish = document.querySelector(`#t${surrCenterTile}`);
 
         //   if (jellyfish.value > 8) {
-        //     surrCenterTileArr.splice(surrCenterTileArr[i], 1);
+        //     surrCenterTileArr.splice(surrCenterTile, 1);
+        //   }
+        //   for (const SurrCenterTileOfSplicedArr of surrCenterTileArr) {
+        //     // rippleTiles are the surrounding 8 tiles of each "center tile with a value = 0"
+        //     const rippleTile = document.querySelector(
+        //       `#t${SurrCenterTileOfSplicedArr}`
+        //     );
+
+        //     // dont't enable ripple effect when a mine is detected in any of the surrounding tiles
+        //     // this line shouldn't be necessary if I removed the tile
+        //     if (rippleTile.value < 9) {
+        //       rippleTile.innerText = rippleTile.value;
+        // }
         //   }
         // }
-
-        // surrCenterTileArr is the array returned by the above function
-        for (const surrCenterTile of surrCenterTileArr) {
-          // remove cases where any of the surrounding tiles are a mine
-          // because if so, the ripple effect should not open any of the surrounding mines
-          const jellyfish = document.querySelector(`#t${surrCenterTile}`);
-
-          if (jellyfish.value > 8) {
-            surrCenterTileArr.splice(surrCenterTile, 1);
-          }
-          for (const SurrCenterTileOfSplicedArr of surrCenterTileArr) {
-            // rippleTiles are the surrounding 8 tiles of each "center tile with a value = 0"
-            const rippleTile = document.querySelector(
-              `#t${SurrCenterTileOfSplicedArr}`
-            );
-
-            // dont't enable ripple effect when a mine is detected in any of the surrounding tiles
-            // this line shouldn't be necessary if I removed the tile
-            if (rippleTile.value < 9) {
-              rippleTile.innerText = rippleTile.value;
-            }
-          }
-        }
       }
     }
   })
