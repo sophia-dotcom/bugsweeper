@@ -1,8 +1,8 @@
 // tiles Col numbered and mines will be assigned to their correspending number
-const numRow = 8; //change here
-const numCol = 8; //change here
+const numRow = 3; //change here
+const numCol = 3; //change here
 const totalNumOfTiles = numRow * numCol;
-const totalNumOfMines = 8; //change here
+const totalNumOfMines = 3; //change here
 const container = document.querySelector(".container");
 
 /////////////////////////////////////////////
@@ -246,6 +246,54 @@ console.log(bottomRightTile.value);
 /////////////////////////////////////////////
 /////// Assigning Values to EDGE Tiles //////
 /////////////////////////////////////////////
+
+//// Left Side /////
+
+// this array generates the HTML id of the 5 surrounding tiles of each left-side tile
+// num refers to the HTML id of the center tile u want to check
+let surrLeftTileArr = [];
+const surrLeftTile = (num) => {
+  return (surrLeftTileArr = [
+    num - numCol,
+    num - numCol + 1,
+    num + 1,
+    num + numCol,
+    num + numCol + 1,
+  ]);
+};
+
+// generate the list of HTML id of left tiles using numRow and numCol
+let leftTileArr = [];
+const generateLeftTiles = () => {
+  for (let i = 3; i < numRow + 1; i++) {
+    leftTileArr.push(numRow * (i - 2));
+  }
+};
+generateLeftTiles();
+console.log(leftTileArr);
+
+for (const eachLeftTile of leftTileArr) {
+  console.log(eachLeftTile);
+  const surrEachLeftTile = surrLeftTile(eachLeftTile);
+  console.log(surrEachLeftTile);
+
+  let somevalue = 0;
+  for (const eachSurrEachLeftTile of surrEachLeftTile) {
+    const theHorribleTile = document.querySelector(`#t${eachSurrEachLeftTile}`);
+    const theHorribleTileVal = theHorribleTile.value;
+
+    const theTileInQuestion = document.querySelector(`#t${eachLeftTile}`);
+    const theTileInQuestionVal = theTileInQuestion.value;
+    if (theHorribleTileVal > 8) {
+      somevalue += 1;
+    }
+    if (theTileInQuestionVal > 8) {
+      somevalue = 9;
+    }
+    theTileInQuestion.value = somevalue;
+  }
+  console.log(somevalue);
+}
 
 /////////////////////////////////////////////
 //// Opening Tile Mechanism ////
