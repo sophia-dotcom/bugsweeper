@@ -1,9 +1,13 @@
 // Board Set Up // => can add some buttons in UI to change values
 // must be at least 3x3
-const numRow = 15; //change here
-const numCol = 15; //change here
+const inputRow = document.querySelector("#inputRow");
+const inputCol = document.querySelector("#inputCol");
+console.log(inputRow.value);
+const numRow = inputRow.value; //change here
+const numCol = inputCol.value; //change here
 const totalNumOfMines = 30; //change here
 // ::::::: CODE STARTS :::::: //
+// document.querySelector("#emoji").src = "smiley.png";
 
 const totalNumOfTiles = numRow * numCol;
 const container = document.querySelector(".container");
@@ -144,7 +148,7 @@ container.addEventListener(
       }
       // End the game
       container.removeEventListener("click", myFunction);
-      document.querySelector("#emoji").src = 'url("mine.png")';
+      document.querySelector("#emoji").src = "frowny.png";
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
       let zeroArray = [];
@@ -304,7 +308,9 @@ container.addEventListener(
 
 document.querySelector("#emoji").addEventListener(
   "click",
-  (reloadFunction = () => {
+  (reloadFunction = (e) => {
+    e.target.style.border = "1px solid rgb(80, 80, 80)";
+    e.target.style.padding = "2px";
     document.location.reload();
   })
 );

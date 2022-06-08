@@ -24,6 +24,7 @@
 .container {
   border: 10px solid rgb(177, 177, 177);
   display: inline-block;
+  background-color: rgb(177, 177, 177);
 }
 
 body {
@@ -32,5 +33,25 @@ body {
 
 #emoji {
   display: block;
-  background-image: url("bug.png");
+  width: 60px;
+  height: 60px;
+  border-left: 3px solid rgb(231, 231, 231);
+  border-top: 3px solid rgb(231, 231, 231);
+  border-right: 3px solid rgb(80, 80, 80);
+  border-bottom: 3px solid rgb(80, 80, 80);
+  background-image: url("smiley.png");
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.form {
+  display: inline-block;
+}
+#inputRow,
+#inputCol,
+#submit {
+  display: block;
+}
+.span {
+  display: inline;
 }

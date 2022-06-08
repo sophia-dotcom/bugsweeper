@@ -14,9 +14,18 @@
     <title>Bugsweeper</title>
   </head>
   <body>
-    <img id="emoji" src="bug.png" />
-
-    <div class="container"></div>
+    <div class="container">
+      <span>
+        <form>
+          <input type="range" id="inputRow" value="" min="3" max="25" />
+          <input type="range" id="inputCol" value="" min="3" max="25" />
+          <input type="submit" id="submit" />
+        </form>
+      </span>
+      <span>
+        <img id="emoji" />
+      </span>
+    </div>
 
     <p>
       Inspired by the classic Minesweeper, <br />this is Bugsweeper.
