@@ -1,6 +1,6 @@
 Inspired by the classic Minesweeper, this is Bugsweeper.
 
-With the help of the values written on the tiles
+With the help of values that _magically_ appear on the tiles
 Estimate the bugs' hidden locations.
 
 If you click on a tile that conceals a bug, it's GAME OVER!
