@@ -1,8 +1,8 @@
 // Board Set Up // => can add some buttons in UI to change values
 // must be at least 3x3
-const numRow = 10; //change here
-const numCol = 10; //change here
-const totalNumOfMines = 15; //change here
+const numRow = 20; //change here
+const numCol = 30; //change here
+const totalNumOfMines = 70; //change here
 // ::::::: CODE STARTS :::::: //
 
 const totalNumOfTiles = numRow * numCol;
@@ -78,8 +78,8 @@ for (let i = 0; i < mineArrJquery.length; i++) {
 
 // this function generates the classes of the 8 surrounding tiles of each tile
 for (const tile of tileArrJquery) {
-  const row = parseInt(tile.className.split(" ")[1][1]);
-  const col = parseInt(tile.className.split(" ")[2][1]);
+  const row = parseInt(tile.className.split(" ")[1].substring(1));
+  const col = parseInt(tile.className.split(" ")[2].substring(1));
 
   // return the `r# c#` class of each surrounding tile
   // will be used twice
@@ -151,25 +151,21 @@ container.addEventListener(
       }
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
-      clickedTile.style.border = "1px solid rgb(80, 80, 80)";
-      clickedTile.style.width = "30px";
-      clickedTile.style.height = "30px";
-      clickedTile.style.padding = "2px";
-
       let zeroArray = [];
+      zeroArray.push(clickedTile);
 
       // this function generates the classes of the 8 surrounding tiles of each tile
 
-      const row = parseInt(clickedTile.className.split(" ")[1][1]);
-      const col = parseInt(clickedTile.className.split(" ")[2][1]);
+      const row = parseInt(clickedTile.className.split(" ")[1].substring(1));
+      const col = parseInt(clickedTile.className.split(" ")[2].substring(1));
 
       // return the `r# c#` class of each surrounding tile
       // will be used twice
-      const surrTileGenerator = (row, col) => {
+      const surrTileGeneratorStrict = (row, col) => {
         let anotherArr = [];
 
         if (row > -1 && col > -1 && row < numRow && col < numCol) {
-          surrTileArrByClass = [
+          surrTileArrByClassStrict = [
             `.tile.r${row - 1}.c${col - 1}`,
             `.tile.r${row - 1}.c${col}`,
             `.tile.r${row - 1}.c${col + 1}`,
@@ -181,14 +177,13 @@ container.addEventListener(
           ];
           // .tile.r4.c5
 
-          for (let i = 0; i < surrTileArrByClass.length; i++) {
-            let row4 = surrTileArrByClass[i].split(".")[2];
-            row4 = row4.substring(1);
-            parseInt(row4);
-
-            let col4 = surrTileArrByClass[i].split(".")[3];
-            col4 = col4.substring(1);
-            parseInt(col4);
+          for (let i = 0; i < surrTileArrByClassStrict.length; i++) {
+            const row4 = parseInt(
+              surrTileArrByClassStrict[i].split(".")[2].substring(1)
+            );
+            const col4 = parseInt(
+              surrTileArrByClassStrict[i].split(".")[3].substring(1)
+            );
 
             if (
               row4 < 0 ||
@@ -203,18 +198,18 @@ container.addEventListener(
         }
         // console.log(anotherArr);
         for (let i = anotherArr.length - 1; i > -1; i--) {
-          surrTileArrByClass.splice(anotherArr[i], 1);
+          surrTileArrByClassStrict.splice(anotherArr[i], 1);
         }
-        // console.log(surrTileArrByClass);
+        // console.log(surrTileArrByClassStrict);
       };
       // now surrTileGenerates the classNames of all valid tiles
-      surrTileGenerator(row, col);
+      surrTileGeneratorStrict(row, col);
 
       // get the 8 surrounding tiles' values using their classes
-      for (const eachsurrTileArrByClass of surrTileArrByClass) {
-        // console.log(eachsurrTileArrByClass);
+      for (const eachsurrTileArrByClassStrict of surrTileArrByClassStrict) {
+        // console.log(eachsurrTileArrByClassStrict);
 
-        someTile = document.querySelector(eachsurrTileArrByClass);
+        someTile = document.querySelector(eachsurrTileArrByClassStrict);
         // console.log(someTile);
 
         //prevent repeats
@@ -232,18 +227,18 @@ container.addEventListener(
 
       for (let i = 0; i < totalNumOfTiles; i++) {
         for (const item of zeroArray) {
-          const row2 = parseInt(item.className.split(" ")[1][1]);
-          const col2 = parseInt(item.className.split(" ")[2][1]);
+          const row2 = parseInt(item.className.split(" ")[1].substring(1));
+          const col2 = parseInt(item.className.split(" ")[2].substring(1));
           // console.log(row2);
           // return the `.tile.r#.c#` class of each surrounding tile
           // will be used twice
 
-          surrTileGenerator(row2, col2);
-          // console.log(surrTileArrByClass);
+          surrTileGeneratorStrict(row2, col2);
+          // console.log(surrTileArrByClassStrict);
 
           // get the 8 surrounding tiles' values using their classes
-          for (const eachsurrTileArrByClass of surrTileArrByClass) {
-            someTile = document.querySelector(eachsurrTileArrByClass); //line doesnt work
+          for (const eachsurrTileArrByClassStrict of surrTileArrByClassStrict) {
+            someTile = document.querySelector(eachsurrTileArrByClassStrict); //line doesnt work
             // console.log(someTile);
 
             //prevent repeats
@@ -266,14 +261,14 @@ container.addEventListener(
       for (const cursedZero of zeroArray) {
         cursedZero.innerText = "";
 
-        const row2 = parseInt(cursedZero.className.split(" ")[1][1]);
-        const col2 = parseInt(cursedZero.className.split(" ")[2][1]);
+        const row2 = parseInt(cursedZero.className.split(" ")[1].substring(1));
+        const col2 = parseInt(cursedZero.className.split(" ")[2].substring(1));
 
-        surrTileGenerator(row2, col2);
-        // return surrTileArrByClass
-        // console.log(surrTileArrByClass);
+        surrTileGeneratorStrict(row2, col2);
+        // return surrTileArrByClassStrict
+        // console.log(surrTileArrByClassStrict);
 
-        for (const eachCursedSurrTile of surrTileArrByClass) {
+        for (const eachCursedSurrTile of surrTileArrByClassStrict) {
           const theCursed = document.querySelector(eachCursedSurrTile);
 
           theCursed.innerText = theCursed.value;
