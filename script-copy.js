@@ -127,28 +127,24 @@ container.addEventListener(
     // console.log(clickedClass);
 
     // making the tiles "open" on click
+
+    // if tile "opened" is a mine
     if (clickedClass[clickedClass.length - 1] == "e") {
       clickedTile.style.backgroundImage = 'url("bug.png")';
       clickedTile.style.backgroundColor = "rgb(209, 20, 20)";
       clickedTile.style.borderColor = "rgb(80, 80, 80)";
-      // clickedTile.style.width = "30px";
-      // clickedTile.style.height = "32px";
-      // clickedTile.style.padding = "2px";
-      // set Time Interval
 
+      // "open" all the other mines
       for (const eachMine of minesSelectedByJquery) {
-        // console.log(eachMine);
-        // const foundYouMine = document.querySelector(`.${eachMine}`);
-        // console.log(foundYouMine);
         eachMine.style.backgroundImage = 'url("bug.png")';
         eachMine.style.border = "1px solid rgb(80, 80, 80)";
         eachMine.style.width = "30px";
         eachMine.style.height = "30px";
         eachMine.style.padding = "2px";
-        // setTimeout(
-        //   ((eachMine.style.backgroundImage = 'url("bug.png")'), 5000)
-        // );
       }
+      // End the game
+      container.removeEventListener("click", myFunction);
+      document.querySelector("#emoji").src = 'url("mine.png")';
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
       let zeroArray = [];
@@ -303,5 +299,12 @@ container.addEventListener(
         clickedTile.style.color = "rgb(209, 20, 20)";
       }
     }
+  })
+);
+
+document.querySelector("#emoji").addEventListener(
+  "click",
+  (reloadFunction = () => {
+    document.location.reload();
   })
 );
