@@ -128,7 +128,8 @@ container.addEventListener(
 
     // making the tiles "open" on click
     if (clickedClass[clickedClass.length - 1] == "e") {
-      clickedTile.style.backgroundImage = 'url("mine30px.jpg")';
+      clickedTile.style.backgroundImage = 'url("bug.png")';
+      clickedTile.style.backgroundColor = "rgb(209, 20, 20)";
       clickedTile.style.borderColor = "rgb(80, 80, 80)";
       // clickedTile.style.width = "30px";
       // clickedTile.style.height = "32px";
@@ -139,10 +140,13 @@ container.addEventListener(
         // console.log(eachMine);
         // const foundYouMine = document.querySelector(`.${eachMine}`);
         // console.log(foundYouMine);
-        eachMine.style.borderColor = "rgb(80, 80, 80)";
-        eachMine.style.backgroundImage = 'url("mine30px.jpg")';
+        eachMine.style.backgroundImage = 'url("bug.png")';
+        eachMine.style.border = "1px solid rgb(80, 80, 80)";
+        eachMine.style.width = "30px";
+        eachMine.style.height = "30px";
+        eachMine.style.padding = "2px";
         // setTimeout(
-        //   ((eachMine.style.backgroundImage = 'url("mine30px.jpg")'), 5000)
+        //   ((eachMine.style.backgroundImage = 'url("bug.png")'), 5000)
         // );
       }
     } else if (clickedTile.value === 0) {
@@ -280,7 +284,7 @@ container.addEventListener(
           } else if (theCursed.innerText === "2") {
             theCursed.style.color = "green";
           } else if (theCursed.innerText === "3") {
-            theCursed.style.color = "red";
+            theCursed.style.color = "rgb(209, 20, 20)";
           }
         }
       }
@@ -296,7 +300,7 @@ container.addEventListener(
       } else if (clickedTile.innerText === "2") {
         clickedTile.style.color = "green";
       } else if (clickedTile.innerText === "3") {
-        clickedTile.style.color = "red";
+        clickedTile.style.color = "rgb(209, 20, 20)";
       }
     }
   })
