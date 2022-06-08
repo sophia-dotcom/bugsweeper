@@ -69,8 +69,8 @@ for (let i = 0; i < mineArrJquery.length; i++) {
   mineArrJquery[i].value = 9;
 }
 
-// console.log(mineLocationsByClass);
-// console.log(minesSelectedByJquery);
+console.log(mineLocationsByClass);
+console.log(minesSelectedByJquery);
 
 /////////////////////////////////////////////
 ///// Assigning values 0 - 8 //////
@@ -111,6 +111,8 @@ for (const tile of tileArrJquery) {
         tile.value += 1;
       }
     }
+
+    tile.innerText = tile.value;
   }
 }
 
@@ -129,22 +131,6 @@ container.addEventListener(
     // making the tiles "open" on click
     if (clickedClass[clickedClass.length - 1] == "e") {
       clickedTile.style.backgroundImage = 'url("mine30px.jpg")';
-      clickedTile.style.borderColor = "rgb(80, 80, 80)";
-      // clickedTile.style.width = "30px";
-      // clickedTile.style.height = "32px";
-      // clickedTile.style.padding = "2px";
-      // set Time Interval
-
-      for (const eachMine of minesSelectedByJquery) {
-        // console.log(eachMine);
-        // const foundYouMine = document.querySelector(`.${eachMine}`);
-        // console.log(foundYouMine);
-        eachMine.style.borderColor = "rgb(80, 80, 80)";
-        eachMine.style.backgroundImage = 'url("mine30px.jpg")';
-        // setTimeout(
-        //   ((eachMine.style.backgroundImage = 'url("mine30px.jpg")'), 5000)
-        // );
-      }
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
       let zeroArray = [];
@@ -187,26 +173,26 @@ container.addEventListener(
               row4 > numRow - 1 ||
               col4 > numCol - 1
             ) {
-              // console.log("removing the junk");
+              console.log("removing the junk");
               anotherArr.push(i);
             }
           }
         }
-        // console.log(anotherArr);
+        console.log(anotherArr);
         for (let i = anotherArr.length - 1; i > -1; i--) {
           surrTileArrByClass.splice(anotherArr[i], 1);
         }
-        // console.log(surrTileArrByClass);
+        console.log(surrTileArrByClass);
       };
       // now surrTileGenerates the classNames of all valid tiles
       surrTileGenerator(row, col);
 
       // get the 8 surrounding tiles' values using their classes
       for (const eachsurrTileArrByClass of surrTileArrByClass) {
-        // console.log(eachsurrTileArrByClass);
+        console.log(eachsurrTileArrByClass);
 
         someTile = document.querySelector(eachsurrTileArrByClass);
-        // console.log(someTile);
+        console.log(someTile);
 
         //prevent repeats
         for (let i = 0; i < zeroArray.length; i++) {
@@ -219,23 +205,23 @@ container.addEventListener(
           zeroArray.push(someTile);
         }
       }
-      // console.log(zeroArray);
+      console.log(zeroArray);
 
       for (let i = 0; i < totalNumOfTiles; i++) {
         for (const item of zeroArray) {
           const row2 = parseInt(item.className.split(" ")[1][1]);
           const col2 = parseInt(item.className.split(" ")[2][1]);
-          // console.log(row2);
+          console.log(row2);
           // return the `.tile.r#.c#` class of each surrounding tile
           // will be used twice
 
           surrTileGenerator(row2, col2);
-          // console.log(surrTileArrByClass);
+          console.log(surrTileArrByClass);
 
           // get the 8 surrounding tiles' values using their classes
           for (const eachsurrTileArrByClass of surrTileArrByClass) {
             someTile = document.querySelector(eachsurrTileArrByClass); //line doesnt work
-            // console.log(someTile);
+            console.log(someTile);
 
             //prevent repeats
             for (let i = 0; i < zeroArray.length; i++) {
@@ -250,54 +236,14 @@ container.addEventListener(
           }
         }
       }
-      // console.log(zeroArray);
+      console.log(zeroArray);
 
       //after finalising the zero array, open all surrounding tiles of the zero array
-
       for (const cursedZero of zeroArray) {
         cursedZero.innerText = "";
-
-        const row2 = parseInt(cursedZero.className.split(" ")[1][1]);
-        const col2 = parseInt(cursedZero.className.split(" ")[2][1]);
-
-        surrTileGenerator(row2, col2);
-        // return surrTileArrByClass
-        // console.log(surrTileArrByClass);
-
-        for (const eachCursedSurrTile of surrTileArrByClass) {
-          const theCursed = document.querySelector(eachCursedSurrTile);
-
-          theCursed.innerText = theCursed.value;
-          theCursed.style.border = "1px solid rgb(80, 80, 80)";
-          theCursed.style.width = "30px";
-          theCursed.style.height = "30px";
-          theCursed.style.padding = "2px";
-
-          if (theCursed.innerText === "0") {
-            theCursed.innerText = "";
-          } else if (theCursed.innerText === "1") {
-            theCursed.style.color = "blue";
-          } else if (theCursed.innerText === "2") {
-            theCursed.style.color = "green";
-          } else if (theCursed.innerText === "3") {
-            theCursed.style.color = "red";
-          }
-        }
       }
-    } else if (clickedClass[0] === "t") {
+    } else if (clickedTile[0] === "t") {
       clickedTile.innerText = clickedTile.value;
-      clickedTile.style.border = "1px solid rgb(80, 80, 80)";
-      clickedTile.style.width = "30px";
-      clickedTile.style.height = "30px";
-      clickedTile.style.padding = "2px";
-
-      if (clickedTile.innerText === "1") {
-        clickedTile.style.color = "blue";
-      } else if (clickedTile.innerText === "2") {
-        clickedTile.style.color = "green";
-      } else if (clickedTile.innerText === "3") {
-        clickedTile.style.color = "red";
-      }
     }
   })
 );
