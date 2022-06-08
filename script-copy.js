@@ -1,8 +1,8 @@
 // Board Set Up // => can add some buttons in UI to change values
 // must be at least 3x3
-const numRow = 20; //change here
-const numCol = 30; //change here
-const totalNumOfMines = 70; //change here
+const numRow = 15; //change here
+const numCol = 15; //change here
+const totalNumOfMines = 30; //change here
 // ::::::: CODE STARTS :::::: //
 
 const totalNumOfTiles = numRow * numCol;
@@ -14,12 +14,12 @@ const container = document.querySelector(".container");
 
 for (let i = 0; i < numRow; i++) {
   const divRow = document.createElement("div");
+  divRow.className = "divRow";
   container.append(divRow);
 
   for (let j = 0; j < numCol; j++) {
     const spanTile = document.createElement("span");
     spanTile.className = `tile r${i} c${j}`;
-    spanTile.id = `t${i * numCol + j}`;
 
     divRow.append(spanTile);
   }

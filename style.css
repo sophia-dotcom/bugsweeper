@@ -1,6 +1,7 @@
 /* * {
   box-sizing: border-box;
 } */
+
 .tile {
   background-color: rgb(177, 177, 177);
   width: 30px;
@@ -16,6 +17,15 @@
   font-weight: 940;
   text-align: center;
 }
-div {
+.divRow {
   margin: -4px;
+}
+
+.container {
+  border: 10px solid rgb(177, 177, 177);
+  display: inline-block;
+}
+
+body {
+  padding: 30px;
 }
