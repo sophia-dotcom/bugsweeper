@@ -503,6 +503,7 @@ container.addEventListener(
           // Recall surrCenterTile() we called earlier that creates surrCenterTileArr
           // which indicates the Ids of the surrounding 8 tiles of any center tile
           console.log(centerTileIndex);
+
           surrCenterTile(centerTileIndex);
           console.log(surrCenterTileArr);
 
@@ -513,6 +514,25 @@ container.addEventListener(
             );
             console.log(rippleTileSelected);
             rippleTileSelected.innerText = rippleTileSelected.value;
+
+            //if rippleTileSelected.value = 0, run RIPPLE EFFECT again
+            if (rippleTileSelected.value === 0) {
+              const rippleTileArr = [];
+              rippleTileArr.push(rippleTile); //pushing the Id of ripple tile selected
+
+              for (const nextRippleTile of rippleTileArr) {
+                surrCenterTile(nextRippleTile);
+
+                for (const nextRoundRippleTile of surrCenterTileArr) {
+                  const nextRoundRippleTileSelected = document.querySelector(
+                    `#t${nextRoundRippleTile}`
+                  );
+                  console.log(nextRoundRippleTile);
+                  nextRoundRippleTileSelected.innerText =
+                    nextRoundRippleTileSelected.value;
+                }
+              }
+            }
           }
         }
 
@@ -553,6 +573,13 @@ container.addEventListener(
         // }
         //   }
         // }
+      }
+    }
+    const emptyTile = document.querySelectorAll(".tile");
+    console.log(emptyTile);
+    for (const eachEmptyTile of emptyTile) {
+      if (eachEmptyTile.value === 0) {
+        eachEmptyTile.innerText = "";
       }
     }
   })
