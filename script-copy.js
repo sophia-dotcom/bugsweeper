@@ -121,7 +121,7 @@ for (const tile of tileArrJquery) {
 container.addEventListener(
   "click",
   (myFunction = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     const clickedTile = e.target;
     const clickedClass = clickedTile.className;
     // console.log(clickedClass);
@@ -151,6 +151,11 @@ container.addEventListener(
       }
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
+      clickedTile.style.border = "1px solid rgb(80, 80, 80)";
+      clickedTile.style.width = "30px";
+      clickedTile.style.height = "30px";
+      clickedTile.style.padding = "2px";
+
       let zeroArray = [];
 
       // this function generates the classes of the 8 surrounding tiles of each tile
