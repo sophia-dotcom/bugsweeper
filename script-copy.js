@@ -132,7 +132,116 @@ container.addEventListener(
     if (clickedClass[clickedClass.length - 1] == "e") {
       clickedTile.style.backgroundImage = 'url("mine30px.jpg")';
     } else if (clickedTile.value === 0) {
-      clickedTile.innerText = "";
+      // clickedTile.innerText = "";
+      let zeroArray = [];
+
+      // this function generates the classes of the 8 surrounding tiles of each tile
+
+      const row = parseInt(clickedTile.className.split(" ")[1][1]);
+      const col = parseInt(clickedTile.className.split(" ")[2][1]);
+
+      // return the `r# c#` class of each surrounding tile
+      // will be used twice
+      const surrTileGenerator = (row, col) => {
+        let anotherArr = [];
+
+        if (row > -1 && col > -1 && row < numRow && col < numCol) {
+          surrTileArrByClass = [
+            `.tile.r${row - 1}.c${col - 1}`,
+            `.tile.r${row - 1}.c${col}`,
+            `.tile.r${row - 1}.c${col + 1}`,
+            `.tile.r${row}.c${col - 1}`,
+            `.tile.r${row}.c${col + 1}`,
+            `.tile.r${row + 1}.c${col - 1}`,
+            `.tile.r${row + 1}.c${col}`,
+            `.tile.r${row + 1}.c${col + 1}`,
+          ];
+          // .tile.r4.c5
+
+          for (let i = 0; i < surrTileArrByClass.length; i++) {
+            let row4 = surrTileArrByClass[i].split(".")[2];
+            row4 = row4.substring(1);
+            parseInt(row4);
+
+            let col4 = surrTileArrByClass[i].split(".")[3];
+            col4 = col4.substring(1);
+            parseInt(col4);
+
+            if (
+              row4 < 0 ||
+              col4 < 0 ||
+              row4 > numRow - 1 ||
+              col4 > numCol - 1
+            ) {
+              console.log("removing the junk");
+              anotherArr.push(i);
+            }
+          }
+        }
+        console.log(anotherArr);
+        for (let i = anotherArr.length - 1; i > -1; i--) {
+          surrTileArrByClass.splice(anotherArr[i], 1);
+        }
+        console.log(surrTileArrByClass);
+      };
+      // now surrTileGenerates the classNames of all valid tiles
+      surrTileGenerator(row, col);
+
+      // get the 8 surrounding tiles' values using their classes
+      for (const eachsurrTileArrByClass of surrTileArrByClass) {
+        console.log(eachsurrTileArrByClass);
+
+        someTile = document.querySelector(eachsurrTileArrByClass);
+        console.log(someTile);
+
+        //prevent repeats
+        for (let i = 0; i < zeroArray.length; i++) {
+          if (someTile === zeroArray[i]) {
+            zeroArray.splice(i, 1);
+          }
+        }
+
+        if (someTile.value === 0) {
+          zeroArray.push(someTile);
+        }
+      }
+      console.log(zeroArray);
+
+      for (let i = 0; i < totalNumOfTiles; i++) {
+        for (const item of zeroArray) {
+          const row2 = parseInt(item.className.split(" ")[1][1]);
+          const col2 = parseInt(item.className.split(" ")[2][1]);
+          console.log(row2);
+          // return the `.tile.r#.c#` class of each surrounding tile
+          // will be used twice
+
+          surrTileGenerator(row2, col2);
+          console.log(surrTileArrByClass);
+
+          // get the 8 surrounding tiles' values using their classes
+          for (const eachsurrTileArrByClass of surrTileArrByClass) {
+            someTile = document.querySelector(eachsurrTileArrByClass); //line doesnt work
+            console.log(someTile);
+
+            //prevent repeats
+            for (let i = 0; i < zeroArray.length; i++) {
+              if (someTile === zeroArray[i]) {
+                zeroArray.splice(i, 1);
+              }
+            }
+
+            if (someTile.value === 0) {
+              zeroArray.push(someTile);
+            }
+          }
+        }
+      }
+      console.log(zeroArray);
+
+      //after finalising the zero array, open all surrounding tiles of the zero array
+      for (const cursedZero of zeroArray) {
+        cursedZero.innerText = "";
+      }
     } else if (clickedTile[0] === "t") {
       clickedTile.innerText = clickedTile.value;
     }
