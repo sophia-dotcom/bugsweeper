@@ -277,6 +277,9 @@ container.addEventListener(
         for (const eachCursedSurrTile of surrTileArrByClassStrict) {
           const theCursed = document.querySelector(eachCursedSurrTile);
 
+          if (theCursed.value != 0) {
+            theCursed.innerText = theCursed.value;
+          }
           theCursed.style.border = "1px solid rgb(80, 80, 80)";
           theCursed.style.width = "30px";
           theCursed.style.height = "30px";
