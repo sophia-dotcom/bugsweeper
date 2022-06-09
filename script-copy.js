@@ -1,11 +1,11 @@
 // Board Set Up // => can add some buttons in UI to change values
 // must be at least 3x3
-const inputRow = document.querySelector("#inputRow");
-const inputCol = document.querySelector("#inputCol");
-console.log(inputRow.value);
-const numRow = 10; //change here
-const numCol = 14; // inputCol.value; //change here
-const totalNumOfMines = 30; //change here
+// const inputRow = document.querySelector("#inputRow");
+// const inputCol = document.querySelector("#inputCol");
+
+const numRow = 3; //change here
+const numCol = 3; // inputCol.value; //change here
+const totalNumOfMines = 1; //change here
 // ::::::: CODE STARTS :::::: //
 // document.querySelector("#emoji").src = "smiley.png";
 
@@ -311,6 +311,21 @@ container.addEventListener(
         clickedTile.style.color = "rgb(209, 20, 20)";
       }
     }
+    let somethingArray = [];
+
+    for (const eachTile of tileArrJquery) {
+      // if tile is a non-mine tile
+      if (eachTile.className[eachTile.className.length - 1] != "e") {
+        //if tile has been clicked before
+        if (eachTile.style.border === "1px solid rgb(80, 80, 80)")
+          somethingArray.push("1");
+      } // if all non-mine tiles have been clicked
+    }
+    if (somethingArray.length === tileArrJquery.length - mineArrJquery.length) {
+      console.log("you win");
+      document.querySelector("#emoji").src = "smiley.png";
+      document.querySelector("h4").innerText = "You win!";
+    }
   })
 );
 
@@ -322,3 +337,6 @@ document.querySelector("#emoji").addEventListener(
     document.location.reload();
   })
 );
+
+// const tileArrJquery = document.querySelectorAll(".tile"); //array of HTML selected tiles
+// const mineArrJquery = document.querySelectorAll(".mine"); //array of HTML selected mines
