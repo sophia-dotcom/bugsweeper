@@ -3,9 +3,9 @@
 // const inputRow = document.querySelector("#inputRow");
 // const inputCol = document.querySelector("#inputCol");
 
-const numRow = 3; //change here
-const numCol = 3; // inputCol.value; //change here
-const totalNumOfMines = 1; //change here
+const numRow = 10; //change here
+const numCol = 10; // inputCol.value; //change here
+const totalNumOfMines = 9; //change here
 // ::::::: CODE STARTS :::::: //
 // document.querySelector("#emoji").src = "smiley.png";
 
@@ -325,6 +325,12 @@ container.addEventListener(
       console.log("you win");
       document.querySelector("#emoji").src = "smiley.png";
       document.querySelector("h4").innerText = "You win!";
+      container.removeEventListener("click", myFunction);
+
+      for (const eachHappyMine of mineArrJquery) {
+        console.log(eachHappyMine);
+        eachHappyMine.style.backgroundImage = 'url("smallsmiley.png")';
+      }
     }
   })
 );
