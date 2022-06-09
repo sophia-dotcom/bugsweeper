@@ -10,5 +10,8 @@ your goal is to find all the bugs.
 **installation instructions**
 
 **Unsolved Problems**
-there may be repeats of bug locations
+1. there may be repeats of bug locations
 e.g. number of bugs is set to 15, but <15 show up on the board
+
+2. How to reset only the game board such that row and column inputs are still saved for the next game
+Currently, everytime u lose and want to start over, the entire page reloads
