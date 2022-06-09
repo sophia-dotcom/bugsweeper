@@ -152,8 +152,13 @@ container.addEventListener(
       document.querySelector("#emoji").src = "frowny.png";
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
+      clickedTile.innerText = clickedTile.value;
+      clickedTile.style.border = "1px solid rgb(80, 80, 80)";
+      clickedTile.style.width = "30px";
+      clickedTile.style.height = "30px";
+      clickedTile.style.padding = "2px";
+
       let zeroArray = [];
-      zeroArray.push(clickedTile);
 
       // this function generates the classes of the 8 surrounding tiles of each tile
 
@@ -272,7 +277,6 @@ container.addEventListener(
         for (const eachCursedSurrTile of surrTileArrByClassStrict) {
           const theCursed = document.querySelector(eachCursedSurrTile);
 
-          theCursed.innerText = theCursed.value;
           theCursed.style.border = "1px solid rgb(80, 80, 80)";
           theCursed.style.width = "30px";
           theCursed.style.height = "30px";

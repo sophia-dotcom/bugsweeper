@@ -31,8 +31,10 @@
 }
 
 #inputRow,
-#inputCol {
+#inputCol,
+#minePerc {
   display: block;
+  padding-top: 4px;
 }
 
 #emoji {
@@ -44,6 +46,19 @@
   border-right: 3px solid rgb(80, 80, 80);
   border-bottom: 3px solid rgb(80, 80, 80);
   background-image: url("smiley.png");
+  /* display: inline; */
+  /* margin-left: 50%; */
+  margin: 0 auto;
+}
+
+#flagIcon {
+  width: 60px;
+  height: 60px;
+  border-left: 3px solid rgb(231, 231, 231);
+  border-top: 3px solid rgb(231, 231, 231);
+  border-right: 3px solid rgb(80, 80, 80);
+  border-bottom: 3px solid rgb(80, 80, 80);
+  background-image: url("flag.png");
   /* display: inline; */
   /* margin-left: 50%; */
   margin: 0 auto;
@@ -78,4 +93,16 @@
   font-size: 28px;
   font-weight: 940;
   text-align: center;
+}
+
+p {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 550;
+  color: rgb(80, 80, 80);
+  padding: 10px;
+  margin-left: 18px;
+  margin-right: 18px;
+  margin-top: 10px;
+  /* margin-bottom: 10px; */
+  border: 1.5px solid rgb(80, 80, 80);
 }
