@@ -3,8 +3,8 @@
 const inputRow = document.querySelector("#inputRow");
 const inputCol = document.querySelector("#inputCol");
 console.log(inputRow.value);
-const numRow = inputRow.value; //change here
-const numCol = inputCol.value; //change here
+const numRow = 10; //change here
+const numCol = 14; // inputCol.value; //change here
 const totalNumOfMines = 30; //change here
 // ::::::: CODE STARTS :::::: //
 // document.querySelector("#emoji").src = "smiley.png";
@@ -19,6 +19,7 @@ const container = document.querySelector(".container");
 for (let i = 0; i < numRow; i++) {
   const divRow = document.createElement("div");
   divRow.className = "divRow";
+  divRow.style.width = `${numCol * 36}px`;
   container.append(divRow);
 
   for (let j = 0; j < numCol; j++) {

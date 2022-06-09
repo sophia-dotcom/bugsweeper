@@ -2,6 +2,65 @@
   box-sizing: border-box;
 } */
 
+.containerGrandma {
+  margin: 50px;
+}
+
+.invisibleMummy {
+  padding: 20px;
+}
+
+.containerMummy {
+  border-left: 3px solid rgb(231, 231, 231);
+  border-top: 3px solid rgb(231, 231, 231);
+  border-right: 3px solid rgb(80, 80, 80);
+  border-bottom: 3px solid rgb(80, 80, 80);
+  background-color: rgb(177, 177, 177);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+#top-bar {
+  background-color: rgb(177, 177, 177);
+}
+
+#item-in-top-bar {
+  display: inline-block;
+  padding: 10px;
+}
+
+#inputRow,
+#inputCol {
+  display: block;
+}
+
+#emoji {
+  /* display: block; */
+  width: 60px;
+  height: 60px;
+  border-left: 3px solid rgb(231, 231, 231);
+  border-top: 3px solid rgb(231, 231, 231);
+  border-right: 3px solid rgb(80, 80, 80);
+  border-bottom: 3px solid rgb(80, 80, 80);
+  background-image: url("smiley.png");
+  /* display: inline; */
+  /* margin-left: 50%; */
+  margin: 0 auto;
+}
+
+/* contains gameboard */
+.container {
+  border: 10px solid rgb(177, 177, 177);
+  background-color: rgb(177, 177, 177);
+}
+
+.divRow {
+  margin-left: auto;
+  margin-right: auto;
+  width: 504px;
+}
+
 .tile {
   background-color: rgb(177, 177, 177);
   width: 30px;
@@ -10,48 +69,13 @@
   border-top: 3px solid rgb(231, 231, 231);
   border-right: 3px solid rgb(80, 80, 80);
   border-bottom: 3px solid rgb(80, 80, 80);
+  margin-top: -2px;
+  margin-bottom: -2px;
+
   display: inline-block;
   overflow: hidden;
   font-family: "Courier New", Courier, monospace;
   font-size: 28px;
   font-weight: 940;
   text-align: center;
-}
-.divRow {
-  margin: -4px;
-}
-
-.container {
-  border: 10px solid rgb(177, 177, 177);
-  display: inline-block;
-  background-color: rgb(177, 177, 177);
-}
-
-body {
-  padding: 30px;
-}
-
-#emoji {
-  display: block;
-  width: 60px;
-  height: 60px;
-  border-left: 3px solid rgb(231, 231, 231);
-  border-top: 3px solid rgb(231, 231, 231);
-  border-right: 3px solid rgb(80, 80, 80);
-  border-bottom: 3px solid rgb(80, 80, 80);
-  background-image: url("smiley.png");
-  margin: auto;
-  margin-bottom: 15px;
-}
-
-.form {
-  display: inline-block;
-}
-#inputRow,
-#inputCol,
-#submit {
-  display: block;
-}
-.span {
-  display: inline;
 }
