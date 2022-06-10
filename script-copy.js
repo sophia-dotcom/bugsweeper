@@ -126,6 +126,7 @@ for (const tile of tileArrJquery) {
 container.addEventListener(
   "click",
   (myFunction = (e) => {
+    console.log("clicked on ");
     console.log(e.target);
     const clickedTile = e.target;
     const clickedClass = clickedTile.className;
@@ -153,6 +154,7 @@ container.addEventListener(
       }
       // End the game
       container.removeEventListener("click", myFunction);
+      container.removeEventListener("mousedown", mousedown);
       document.querySelector("#emoji").src = "frowny.png";
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
@@ -330,6 +332,7 @@ container.addEventListener(
       document.querySelector("#emoji").src = "smiley.png";
       document.querySelector("h4").innerText = "You win!";
       container.removeEventListener("click", myFunction);
+      container.removeEventListener("mousedown", mousedown);
 
       for (const eachHappyMine of mineArrJquery) {
         console.log(eachHappyMine);
@@ -376,13 +379,20 @@ document.querySelector("#flagIcon").addEventListener(
 container.addEventListener(
   "mousedown",
   (mousedown = (e) => {
-    //removing previously flagged tile
-    if (e.target.style.backgroundImage === 'url("smallflag.png")') {
-      e.target.style.backgroundImage = "";
+    console.log("right clicked on ");
+    console.log(e.target);
+    // preventing flagging on "opened" tiles
+    if (e.target.style.border != "1px solid rgb(80, 80, 80)") {
+      //removing previously flagged tile
+      if (e.target.style.backgroundImage === 'url("smallflag.png")') {
+        e.target.style.backgroundImage = "";
 
-      // flagging an unopened tile
-    } else if (e.target.value < 9) {
-      e.target.style.backgroundImage = 'url("smallflag.png")';
+        // flagging an unopened tile
+      } else {
+        e.target.style.backgroundImage = 'url("smallflag.png")';
+      }
     }
   })
 );
+
+window.addEventListener("contextmenu", (e) => e.preventDefault());
