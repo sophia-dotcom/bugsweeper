@@ -41,6 +41,17 @@ body {
   padding-top: 4px;
 }
 
+h4 {
+  font-family: "Courier New", Courier, monospace;
+  display: inline-block;
+  color: rgb(80, 80, 80);
+  padding: 10px;
+  margin-left: 18px;
+  margin-right: 18px;
+  margin-top: 10px;
+  /* margin-bottom: 10px; */
+}
+
 #emoji {
   /* display: block; */
   width: 60px;

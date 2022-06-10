@@ -348,6 +348,28 @@ document.querySelector("#emoji").addEventListener(
   })
 );
 
+document.querySelector("#flagIcon").addEventListener(
+  "click",
+  (flagFunc = (e) => {
+    if (e.target.style.border === "1px solid rgb(80, 80, 80)") {
+      document.querySelector("h4").innerText = "";
+      document.querySelector("h4").style.border = "";
+      e.target.style.borderLeft = "3px solid rgb(231, 231, 231)";
+      e.target.style.borderTop = "3px solid rgb(231, 231, 231)";
+      e.target.style.borderRight = "3px solid rgb(80, 80, 80)";
+      e.target.style.borderBottom = "3px solid rgb(80, 80, 80)";
+      e.target.style.marginTop = "-2px";
+      e.target.style.marginBottom = "-2px";
+    } else {
+      e.target.style.border = "1px solid rgb(80, 80, 80)";
+      e.target.style.padding = "2px";
+      document.querySelector("h4").innerText =
+        "Right click to flag, mobile feature coming soon..";
+      document.querySelector("h4").style.border = "1.5px solid rgb(80, 80, 80)";
+    }
+  })
+);
+
 // const tileArrJquery = document.querySelectorAll(".tile"); //array of HTML selected tiles
 // const mineArrJquery = document.querySelectorAll(".mine"); //array of HTML selected mines
 
