@@ -1,7 +1,15 @@
 Inspired by the classic Minesweeper, this is Bugsweeper.
 
+
 Just like in coding,
 your goal is to find all the bugs.
+
+
+This game helps to overcome your fear of bugs in coding.
+Because with logical thinking, you can find the bugs and safely flag them.
+
+
+======
 
 **explanations of the technologies used**
 
