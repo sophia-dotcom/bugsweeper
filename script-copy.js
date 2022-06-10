@@ -354,7 +354,12 @@ document.querySelector("#emoji").addEventListener(
 container.addEventListener(
   "mousedown",
   (mousedown = (e) => {
-    if (e.target.value < 9) {
+    //removing previously flagged tile
+    if (e.target.style.backgroundImage === 'url("smallflag.png")') {
+      e.target.style.backgroundImage = "";
+
+      // flagging an unopened tile
+    } else if (e.target.value < 9) {
       e.target.style.backgroundImage = 'url("smallflag.png")';
     }
   })
