@@ -126,10 +126,14 @@ for (const tile of tileArrJquery) {
 container.addEventListener(
   "click",
   (myFunction = (e) => {
-    // console.log(e.target);
+    console.log(e.target);
     const clickedTile = e.target;
     const clickedClass = clickedTile.className;
-    // console.log(clickedClass);
+
+    // removing any flags on the tile
+    if ((clickedTile.style.backgroundImage = 'url("smallsmiley.png")')) {
+      clickedTile.style.backgroundImage = "";
+    }
 
     // making the tiles "open" on click
 
@@ -152,7 +156,7 @@ container.addEventListener(
       document.querySelector("#emoji").src = "frowny.png";
     } else if (clickedTile.value === 0) {
       // clickedTile.innerText = "";
-      clickedTile.innerText = clickedTile.value;
+
       clickedTile.style.border = "1px solid rgb(80, 80, 80)";
       clickedTile.style.width = "30px";
       clickedTile.style.height = "30px";
@@ -346,3 +350,12 @@ document.querySelector("#emoji").addEventListener(
 
 // const tileArrJquery = document.querySelectorAll(".tile"); //array of HTML selected tiles
 // const mineArrJquery = document.querySelectorAll(".mine"); //array of HTML selected mines
+
+container.addEventListener(
+  "mousedown",
+  (mousedown = (e) => {
+    if (e.target.value < 9) {
+      e.target.style.backgroundImage = 'url("smallflag.png")';
+    }
+  })
+);
